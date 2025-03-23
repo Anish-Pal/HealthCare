@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Your Health, Our Priority</title>
+     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+
+<body>
+    <div class="heading">
+        <div class="nav">
+            <h1>MediCare</h1>
+            <a href=""><img class="logoImg" src="{% static 'assets/login.svg' %}" alt=""></a>
+        </div>
+        <nav>
+            <ul id="sidemenu">
+                <li><a href="">Home</a></li>
+                <li><a href="">OPD Appointment</a></li>
+                <li><a href="">Find Blood</a></li>
+                <li><a href="">Emergency</a></li>
+                <li><a href="">Hospital Bed-Availability</a></li>
+                <li><a href="">Contact Us</a></li>
+                <img id="crossimg" src="{% static 'assets/cross.svg' %}" alt="">
+            </ul>
+            <img id="menuimg" src="{% static 'assets/menu.svg' %}" alt="">
+        </nav>
+    </div>
+
+    <body>
+        <div class="search-Hospital">
+            <h3>All Hospitals. One Platform.</h3>
+            <p>We provide quality healthcare services, emergency care, specialist appointments, real-time bed
+                availability,
+                OPD appointment booking, and blood availability services.</p>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search Hospitals">
+                <button><img src="{% static 'assets/search.svg' %}" alt=""></button>
+            </div>
+
+        </div>
+
+
+        <div class="service-tag">
+            <h1>Our Services</h1>
+        </div>
+        <div class="container">
+            <a href="">
+                <div class="services">
+                    <div class="service-img">🛏️</div>
+                    <h2>Bed availability</h2>
+                    <p>Find available beds and book beds across all hospitals in your city with real-time updates.</p>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="services">
+                    <div class="service-img">🩺</div>
+                    <h2>OPD Appointment</h2>
+                    <p>Book appointments with specialists across multiple hospitals from a single platform.</p>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="services">
+                    <div class="service-img">🏥</div>
+                    <h2>Blood availability</h2>
+                    <p>Find available blood stock across all hospitals in your city with real-time updates. </p>
+                </div>
+            </a>
+        </div>
+    </body>
+
+    <footer>
+        <div class="foot">
+            <div class="footer-elements">
+                <h3>About MediCare</h3>
+                <a href="">Our Mission</a>
+                <a href=""> How it works</a>
+                <a href="">For Patients</a>
+                <a href="">For Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Services</h3>
+                <a href="">Bed availability</a>
+                <a href="">OPD appointment</a>
+                <a href="">Blood availability</a>
+                <a href="">Find Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Support</h3>
+                <a href="">Help center</a>
+                <a href="">Contact Us</a>
+                <a href="">FAQs</a>
+                <a href="">Feedback</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Legal</h3>
+                <a href="">Terms of service</a>
+                <a href="">Privacy Policy</a>
+                <a href="">Data Protection</a>
+                <a href="">Cookies Policy</a>
+            </div>
+            <div class="footer-line"></div>
+        </div>
+        <div class="rights">
+            <p>© 2025 MediCare. All rights reserved.</p>
+        </div>
+
+    </footer>
+    <script src="{% static 'assets/home.js' %}"></script>
+<body>
+</html>

@@ -1,0 +1,436 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: #f1eeeef3;
+    min-width: 100%;
+}
+
+.logoImg{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    transition: filter 0.1s ease-in-out;
+}
+.logoImg:hover{
+   filter: invert(1);
+}
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.heading{
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+.heading h1{
+    font-size: 50px;
+}
+nav ul {
+    list-style: none;
+    padding: 15px 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+}
+nav ul li a:after{
+    content: '';
+    height: 3px;
+    width: 0;
+    position: absolute;
+    background: #26a69a;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+nav ul li a:hover::after{
+    width: 100%;
+ }
+nav ul li a:hover{
+   color: #6ae6d9;
+}
+#crossimg{
+    width: 20px;
+    height: 20px;
+    display: none;
+    top: 25px;
+    left: 25px;
+    position: absolute;
+    cursor: pointer;
+}
+#menuimg{
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.search-Hospital {
+    min-height: 100%;
+    color: #333;
+    text-align: center;
+    font-size: 42px;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.search-Hospital p{
+    font-weight: 400;
+    font-size: 15px;
+    width: 70%;
+    margin: 13px 0;
+    color: #333;
+}
+
+@keyframes swipeX {
+    0% { 
+        transform: translateX(-100%); 
+        opacity: 0; 
+        color:#333;
+    }
+    20% { 
+        transform: translateX(0); 
+        opacity: 1; 
+        color: #26a69a;
+    }
+    50% { 
+        transform: translateX(15px);
+        opacity: 1; 
+        color:#333;
+    }
+    80% { 
+        transform: translateX(0); 
+        opacity: 1; 
+        color: #26a69a;
+    }
+    100% { 
+        transform: translateX(100%); 
+        opacity: 0; 
+        color: #333;
+    }
+}
+.search-Hospital h3 {
+    font-size: 42px;
+    animation: swipeX 8s infinite ease-in-out; /* Increased duration from 6s to 8s */
+}
+.search-Hospital h3 {
+    font-size: 42px;
+    animation: swipeX 6s infinite ease-in-out;
+}
+
+.search-bar {
+    background: white;
+    border-radius: 30px;
+    display: flex; 
+    align-items: center;
+    padding: 5px; 
+    width: fit-content; 
+    margin: 15px 0;
+}
+
+.search-bar input {
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 14px; 
+    width: 350px; 
+    border-radius: 20px;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.search-bar button img {
+    width: 20px; 
+    height: 20px;
+}
+.service-tag h1 {
+     display: flex;
+     justify-content: center;
+     padding: 20px 0;
+     text-decoration: none;
+     position: relative;
+}
+.service-tag h1::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 45%; 
+    width: 10%; 
+    height: 4px;
+    background-color: #26a69a;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 50px 0;
+}
+.container a{
+    text-decoration: none;
+    color: #333;
+}
+.services{
+    width: 17em;
+    height: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    text-decoration: none;
+    background:white;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.services:hover{
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+.service-img{
+   font-size: 50px;
+}
+.service-img{
+    padding: 10px 0;
+}
+.services h2{
+    padding: 10px 0;
+}
+.services p{
+    padding: 13px 40px;
+}
+footer{
+    background: #333;
+}
+.foot{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: #333;
+    color: #f1eeeef3;
+    padding: 50px;
+    gap: 50px;
+}
+.footer-elements{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+}
+.footer-elements h3{
+   font-weight: 900;
+}
+.footer-elements a{
+    font-weight: 200;
+    text-decoration: none;
+    color:  #f1eeeef3;
+}
+.footer-elements a:hover{
+    color: #26a69a;
+    font-weight: 400;
+}
+.rights{
+    height: 5rem;
+    padding: 10px 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width:600px) {
+    body {
+        width: 100vh;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 200px;
+    }
+
+    .logoImg {
+        position: relative;
+    }
+
+    #menuimg {
+        width: 20px;
+        height: 20px;
+        display: block;
+        font-size: 25px;
+        position: absolute;
+        top: 62px;
+        padding: 0 50px;
+    }
+
+    #crossimg {
+        width: 20px;
+        height: 20px;
+        display: block;
+        top: 25px;
+        left: 25px;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    nav ul {
+        background: #26a69a;
+        position: fixed;
+        top: 0;
+        right: -400px;
+        height: 80vw;
+        width: 200px;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    nav {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .service-tag h1 {
+        font-size: 40px;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+        text-decoration: none;
+        position: relative;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .services {
+        width: 30rem;
+        height: 30rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 30px;
+        text-decoration: none;
+        background: white;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .service-img {
+        font-size: 80px;
+    }
+
+    .service-img {
+        padding: 20px 0;
+    }
+
+    .services h2 {
+        padding: 30px 0;
+        font-size: 40px;
+    }
+
+    .services p {
+        padding: 13px 40px;
+        font-size: 25px;
+    }
+}
+
+
+@media only screen and (min-width:601px) and (max-width:768px) {
+    body{
+        width: 100vh; 
+   } 
+   .logoImg{
+       position: relative;
+       left: 366px;
+       top: -35px;
+       transition: filter 0.1s ease-in-out;
+   }
+    
+}
+
+ 
+ @media only screen and (min-width:769px) and (max-width:820px){
+    nav ul {
+        list-style: none;
+        padding: 15px 0;
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 22px;
+    }
+    nav ul li {
+        display: inline;
+    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+        position: relative;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        padding: 50px 0;
+    }
+    .container a{
+        text-decoration: none;
+        color: #333;
+    }
+    .services{
+        width: 14em;
+        height: 14rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 30px;
+        text-decoration: none;
+        background:white;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+} 
+@media only screen and (min-width:821px) and (max-width:854px){
+    .services{
+        width: 14em;
+        height: 18rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 30px;
+        text-decoration: none;
+        background: white;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+}
