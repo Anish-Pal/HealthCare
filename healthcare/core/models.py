@@ -8,7 +8,7 @@ User = get_user_model()
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
     address = models.TextField(blank=True,null=True)
-    dispaly = models.FileField(blank=True, null=True)
+    display = models.FileField(upload_to='hospital_images/', blank=True, null=True)
      
 
 class Department(models.Model):
@@ -88,4 +88,4 @@ class Bloodbank(models.Model):
     ]
     hospital = models.ForeignKey(Hospital,on_delete=models.CASCADE)
     bld_grps = models.CharField(max_length=5, choices=BLOOD_GRP_CHOICES)
-    units_available = models.PositiveBigIntegerField(default=0)
+    units_available = models.PositiveIntegerField(default=0)

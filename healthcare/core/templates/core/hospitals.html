@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Your Health, Our Priority</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+
+<body>
+    <div class="heading">
+        <div class="nav">
+            <h1>MediCare<span id="plus">+</span></h1>
+            <a href=""><img class="logoImg" src="{% static 'assets/login.svg' %}" alt=""></a>
+        </div>
+        <nav>
+            <ul id="sidemenu">
+                <li><a href="">Home</a></li>
+                <li><a href="">OPD Appointment</a></li>
+                <li><a href="">Find Blood</a></li>
+                <li><a href="">Emergency</a></li>
+                <li><a href="">Hospital Bed-Availability</a></li>
+                <li><a href="">Contact Us</a></li>
+                <img id="crossimg" src="{% static 'assets/cross.svg' %}" alt="">
+            </ul>
+            <img id="menuimg" src="{% static 'assets/menu.svg' %}" alt="">
+        </nav>
+    </div>
+
+   
+    <div class="hospitals">
+        <h2>Available Hospitals</h2>
+        <div class="hospital-list">
+            {% if hospitals %}
+                {% for hospital in hospitals %}
+                    <div class="hospital-card">
+                        <h3>{{ hospital.name }}</h3>
+                        <p><strong>Address:</strong> {{ hospital.address }}</p> <!-- Display Address -->
+                        
+                        {% if hospital.display %}
+                        <img src="{{ hospital.display.url }}" alt="{{ hospital.name }}">
+                        {% else %}
+                            <p>No Image Available</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No hospitals found.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+
+</body>

@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediConnect - Your Health, Our Priority</title>
-     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 </head>
 
 <body>
     <div class="heading">
         <div class="nav">
-            <h1>MediCare</h1>
+            <h1>MediCare<span id="plus">+</span></h1>
             <a href=""><img class="logoImg" src="{% static 'assets/login.svg' %}" alt=""></a>
         </div>
         <nav>
@@ -36,10 +36,10 @@
                 availability,
                 OPD appointment booking, and blood availability services.</p>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search Hospitals">
-                <button><img src="{% static 'assets/search.svg' %}" alt=""></button>
-            </div>
+                <form action="{% url 'hospitals' %}" class="search-bar" method="GET" action="">
+                    <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search Hospitals">
+                    <button><img src="{% static 'assets/search.svg' %}" alt=""></button>
+                </form>
 
         </div>
 
@@ -115,5 +115,7 @@
 
     </footer>
     <script src="{% static 'assets/home.js' %}"></script>
-<body>
+
+    <body>
+
 </html>
