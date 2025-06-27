@@ -8,24 +8,57 @@ User = get_user_model()
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
     address = models.TextField(blank=True,null=True)
-    display = models.FileField(upload_to='hospital_images/', blank=True, null=True)
+    display = models.FileField(upload_to='media/hospital_images/', blank=True, null=True)
+     
+    general_beds = models.PositiveIntegerField(default=0)
+    cabin_beds = models.PositiveIntegerField(default=0)
+    icu_beds = models.PositiveIntegerField(default=0)
+    ventilator_beds = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+    
      
 
 class Department(models.Model):
     DEPARTMENT_CHOICES = [
-        ('EMERGENCY','Emergency'),
-        ('CHEST','Chest'),
-        ('HEART','Heart'),
-        ('ORTHO','Orthopedic'),
-    ]
+    ('ENT', 'ENT'),
+    ('CARDIOLOGY', 'Cardiology'),
+    ('ORTHO', 'Orthopedics'),
+    ('PEDIATRICS', 'Pediatrics'),
+    ('GASTROENTEROLOGY', 'Gastroenterology'),
+    ('NEUROLOGY', 'Neurology'),
+    ('GYNECOLOGY', 'Gynecology & Obstetrics'),
+    ('DERMATOLOGY', 'Dermatology'),
+    ('ONCOLOGY', 'Oncology'),
+    ('NEPHROLOGY', 'Nephrology'),
+    ('PULMONOLOGY', 'Pulmonology'),
+    ('OPHTHALMOLOGY', 'Ophthalmology'),
+]
+
     hospital = models.ForeignKey(Hospital,on_delete=models.CASCADE)
     name = models.CharField(max_length=50,choices=DEPARTMENT_CHOICES)
 
+    def __str__(self):
+        return self.name
+
 
 class Doctor(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    name  = models.CharField(max_length=100, default="Unnamed Doctor")
+    qualification = models.CharField(max_length=100,default="unknonwed")
     department = models.ForeignKey(Department,on_delete=models.CASCADE)
+    hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE ,default=1)
     opd_duration = models.PositiveBigIntegerField()
+
+    def get_opd_timing_display(self):
+       slots = self.slot_set.all()
+       if not slots:
+         return "No slots available"
+       return ", ".join([f"{slot.days} ({slot.start_time.strftime('%H:%M')} - {slot.end_time.strftime('%H:%M')})" for slot in slots])
+    
+    def __str__(self):
+        return self.name
+
 
 
 class Patient(models.Model):
@@ -50,7 +83,7 @@ class Bed(models.Model):
     under = models.ForeignKey(Doctor,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
-        return self.name
+        return self.bed_type + " - " + self.department.name
 
 
 class Slot(models.Model):
@@ -72,7 +105,9 @@ class Slot(models.Model):
 class Appointment(models.Model):
     patient =  models.ForeignKey(Patient,on_delete=models.CASCADE,blank=True,null=True)
     doctor =  models.ForeignKey(Doctor,on_delete=models.CASCADE,blank=True,null=True)
-    slot = models.DateTimeField()
+    slot = models.ForeignKey(Slot, on_delete=models.CASCADE, blank=True, null=True)
+    date = models.DateField(blank=True, null=True) 
+
 
 
 class Bloodbank(models.Model):

@@ -17,11 +17,11 @@
         </div>
         <nav>
             <ul id="sidemenu">
-                <li><a href="">Home</a></li>
-                <li><a href="">OPD Appointment</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'departments' %}">OPD Appointment</a></li>
                 <li><a href="">Find Blood</a></li>
                 <li><a href="">Emergency</a></li>
-                <li><a href="">Hospital Bed-Availability</a></li>
+                <li><a href="{% url 'hospitals' %}">Hospital Bed-Availability</a></li>
                 <li><a href="">Contact Us</a></li>
                 <img id="crossimg" src="{% static 'assets/cross.svg' %}" alt="">
             </ul>
@@ -48,7 +48,7 @@
             <h1>Our Services</h1>
         </div>
         <div class="container">
-            <a href="">
+            <a href="{% url 'hospitals' %}">
                 <div class="services">
                     <div class="service-img">🛏️</div>
                     <h2>Bed availability</h2>
@@ -56,7 +56,7 @@
                 </div>
             </a>
 
-            <a href="">
+            <a href="{% url 'departments' %}">
                 <div class="services">
                     <div class="service-img">🩺</div>
                     <h2>OPD Appointment</h2>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments</title>
+    <link rel="stylesheet" href="{% static 'styles/opd.css' %}">
+</head>
+
+<body>
+
+    <div class="heading">
+        <div class="nav">
+            <h1>MediCare<span id="plus">+</span></h1>
+            <a href="#"><img class="logoImg" src="{% static 'assets/login.svg' %}" alt="Login"></a>
+        </div>
+        <nav>
+            <ul id="sidemenu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'departments' %}">OPD Appointment</a></li>
+                <li><a href="">Find Blood</a></li>
+                <li><a href="">Emergency</a></li>
+                <li><a href="{% url 'hospitals' %}">Hospital Bed-Availability</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <img id="crossimg" src="{% static 'assets/cross.svg' %}" alt="">
+            </ul>
+            <img id="menuimg" src="{% static 'assets/menu.svg' %}" alt="">
+        </nav>
+    </div>
+
+    <div class="heading2">
+        <h2>Departments</h2>
+        <div class="search-Hospital">
+            <form action="{% url 'departments' %}" class="search-bar" method="GET">
+                <input type="text" name="q" value="{{ q }}" placeholder=" Search Departments..">
+                <button type="submit"><img src="{% static 'assets/search.svg' %}" alt="Search"></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if departments %}
+        {% for dept in departments %}
+  
+        <a href="{% url 'doctors' dept.id %}">
+            <div class="card">
+                {% if dept.name == "ENT" %}
+                <img src="{% static 'assets/ent.png' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>ENT</h4>
+                    <p>Ear-Nose-Throat</p>
+                </div>
+
+                {% elif dept.name == "CARDIOLOGY" %}
+                <img src="{% static 'assets/cardiology.png' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Cardiology</h4>
+                    <p>Heart-related issues</p>
+                </div>
+
+                {% elif dept.name == "ORTHO" %}
+                <img src="{% static 'assets/ortho.png' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Orthopedics</h4>
+                    <p>Bones, joints, and muscles</p>
+                </div>
+
+                {% elif dept.name == "PEDIATRICS" %}
+                <img src="{% static 'assets/pedia.webp' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Pediatrics</h4>
+                    <p>Child healthcare</p>
+                </div>
+
+                {% elif dept.name == "GASTROENTEROLOGY" %}
+                <img src="{% static 'assets/gas.jpg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Gastroenterology</h4>
+                    <p>Digestive system</p>
+                </div>
+
+                {% elif dept.name == "NEUROLOGY" %}
+                <img src="{% static 'assets/neuro.jpeg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Neurology</h4>
+                    <p>Brain and nerves</p>
+                </div>
+
+                {% elif dept.name == "GYNECOLOGY" %}
+                <img src="{% static 'assets/gyn.png' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Gynecology</h4>
+                    <p>Women's health & childbirth</p>
+                </div>
+
+                {% elif dept.name == "DERMATOLOGY" %}
+                <img src="{% static 'assets/skin.jpg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Dermatology</h4>
+                    <p>Skin, hair, and nails</p>
+                </div>
+
+                {% elif dept.name == "ONCOLOGY" %}
+                <img src="{% static 'assets/oncology.jpg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Oncology</h4>
+                    <p>Cancer treatment</p>
+                </div>
+
+                {% elif dept.name == "NEPHROLOGY" %}
+                <img src="{% static 'assets/nephro.jpg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Nephrology</h4>
+                    <p>Kidney care</p>
+                </div>
+
+                {% elif dept.name == "PULMONOLOGY" %}
+                <img src="{% static 'assets/pulmo.jpeg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Pulmonology</h4>
+                    <p>Lungs & respiratory system</p>
+                </div>
+
+                {% elif dept.name == "OPHTHALMOLOGY" %}
+                <img src="{% static 'assets/eye.jpg' %}" class="hospital-image" alt="">
+                <div class="text">
+                    <h4>Ophthalmology</h4>
+                    <p>Eye care</p>
+                </div>
+                {% endif %}
+            </div>
+
+        </a>
+        {% endfor %}
+        {% else %}
+        <p style="text-align: center;">No departments found for "{{ q }}"</p>
+        {% endif %}
+    </div>
+
+        <footer>
+        <div class="foot">
+            <div class="footer-elements">
+                <h3>About MediCare</h3>
+                <a href="">Our Mission</a>
+                <a href=""> How it works</a>
+                <a href="">For Patients</a>
+                <a href="">For Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Services</h3>
+                <a href="">Bed availability</a>
+                <a href="">OPD appointment</a>
+                <a href="">Blood availability</a>
+                <a href="">Find Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Support</h3>
+                <a href="">Help center</a>
+                <a href="">Contact Us</a>
+                <a href="">FAQs</a>
+                <a href="">Feedback</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Legal</h3>
+                <a href="">Terms of service</a>
+                <a href="">Privacy Policy</a>
+                <a href="">Data Protection</a>
+                <a href="">Cookies Policy</a>
+            </div>
+            <div class="footer-line"></div>
+        </div>
+        <div class="rights">
+            <p>© 2025 MediCare. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

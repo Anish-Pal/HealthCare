@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/doctorlist.css' %}">
+</head>
+
+<body>
+    <div class="heading">
+        <div class="nav">
+            <h1>MediCare<span id="plus">+</span></h1>
+            <a href="#"><img class="logoImg" src="{% static 'assets/login.svg' %}" alt="Login"></a>
+        </div>
+        <nav>
+            <ul id="sidemenu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'departments' %}">OPD Appointment</a></li>
+                <li><a href="">Find Blood</a></li>
+                <li><a href="">Emergency</a></li>
+                <li><a href="{% url 'hospitals' %}">Hospital Bed-Availability</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <img id="crossimg" src="{% static 'assets/cross.svg' %}" alt="">
+            </ul>
+            <img id="menuimg" src="{% static 'assets/menu.svg' %}" alt="">
+        </nav>
+    </div>
+
+    <!-- departments.html -->
+    {% if doctors %}
+    <div class="department-list">
+        <div class="department-card">
+            <h3>{{ department|upper }}</h3>
+        </div>
+        <div class="date-selector">
+            <form action="{% url 'doctors' department.id %}" method="GET">
+                <label for="opd-date">
+                    <p>Select Date</p>(MON-SUN)
+                </label>
+                <select id="opd-date" name="day" onchange="this.form.submit()">
+                    {% for value, label in days_choices %}
+                    <option value="{{ value }}" {% if value == select_day %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <div class="doctor-list">
+        <h2>Doctors</h2>
+        <div class="search-Hospital">
+            <form action="{% url 'doctors' department.id  %}" method="GET" class="search-bar">
+                <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search Doctors and Specialicts">
+                <button type="submit">
+                    <img src="{% static 'assets/search.svg' %}" alt="Search">
+                </button>
+            </form>
+        </div>
+
+        <table class="doctor-table">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Hospital</th>
+                    <th>OPD Days</th>
+                    <th>Timing</th>
+                    <th>Booking</th>
+                </tr>
+            </thead>
+            {% for doctor in doctors %}
+            <tbody>
+                {% if doctor.slot_set.all %}
+                {% for slot in doctor.slot_set.all %}
+                <tr>
+                    <td>{{doctor.name}}<br>
+                        <p>({{doctor.qualification}})</p>
+                    </td>
+                    <td>{{doctor.hospital}}</td>
+                    <td>{{slot.days}}</td>
+                    <td>({{ slot.start_time|time:"H:i" }} - {{ slot.end_time|time:"H:i" }})</td>
+                    <td><button id="bookbtn">Book appointment</button></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <div class="no_doctor">
+                    <h2>No Doctor available</h2>
+                </div>
+                {% endif %}
+            </tbody>
+
+        </table>
+    </div>
+    <footer>
+        <div class="foot">
+            <div class="footer-elements">
+                <h3>About MediCare</h3>
+                <a href="">Our Mission</a>
+                <a href=""> How it works</a>
+                <a href="">For Patients</a>
+                <a href="">For Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Services</h3>
+                <a href="">Bed availability</a>
+                <a href="">OPD appointment</a>
+                <a href="">Blood availability</a>
+                <a href="">Find Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Support</h3>
+                <a href="">Help center</a>
+                <a href="">Contact Us</a>
+                <a href="">FAQs</a>
+                <a href="">Feedback</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Legal</h3>
+                <a href="">Terms of service</a>
+                <a href="">Privacy Policy</a>
+                <a href="">Data Protection</a>
+                <a href="">Cookies Policy</a>
+            </div>
+            <div class="footer-line"></div>
+        </div>
+        <div class="rights">
+            <p>© 2025 MediCare. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

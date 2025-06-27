@@ -1,56 +1,117 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediConnect - Your Health, Our Priority</title>
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>Hospital Bed Availability</title>
+    <link rel="stylesheet" href="{% static 'styles/bed.css' %}">
 </head>
-
 <body>
+
+    <!-- Header -->
     <div class="heading">
         <div class="nav">
             <h1>MediCare<span id="plus">+</span></h1>
-            <a href=""><img class="logoImg" src="{% static 'assets/login.svg' %}" alt=""></a>
+            <a href="#"><img class="logoImg" src="{% static 'assets/login.svg' %}" alt="Login"></a>
         </div>
         <nav>
             <ul id="sidemenu">
-                <li><a href="">Home</a></li>
-                <li><a href="">OPD Appointment</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'departments' %}">OPD Appointment</a></li>
                 <li><a href="">Find Blood</a></li>
                 <li><a href="">Emergency</a></li>
-                <li><a href="">Hospital Bed-Availability</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li><a href="{% url 'hospitals' %}">Hospital Bed-Availability</a></li>
+                <li><a href="#">Contact Us</a></li>
                 <img id="crossimg" src="{% static 'assets/cross.svg' %}" alt="">
             </ul>
             <img id="menuimg" src="{% static 'assets/menu.svg' %}" alt="">
         </nav>
     </div>
 
-   
-    <div class="hospitals">
-        <h2>Available Hospitals</h2>
-        <div class="hospital-list">
+    <!-- Search and Heading -->
+    <section id="Hospital bed-availability">
+        <div class="heading2">
+            <h2>Hospitals</h2>
+            <div class="search-Hospital">
+                <form action="{% url 'hospitals' %}" method="GET" class="search-bar">
+                    <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search Hospitals..">
+                    <button type="submit">
+                        <img src="{% static 'assets/search.svg' %}" alt="Search">
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Hospital Cards -->
+        <div class="hospital-container">
             {% if hospitals %}
                 {% for hospital in hospitals %}
                     <div class="hospital-card">
-                        <h3>{{ hospital.name }}</h3>
-                        <p><strong>Address:</strong> {{ hospital.address }}</p> <!-- Display Address -->
-                        
+                        <h2>{{ hospital.name }}</h2>
+                          <p id="address">{{ hospital.address }}</p>
                         {% if hospital.display %}
-                        <img src="{{ hospital.display.url }}" alt="{{ hospital.name }}">
+                            <img src="{{ hospital.display.url }}" alt="{{ hospital.name }}" class="hospital-image">
                         {% else %}
-                            <p>No Image Available</p>
+                            <img src="{% static 'assets/default_hospital.jpg' %}" alt="Hospital Image" class="hospital-image">
                         {% endif %}
+                        <p>{{ hospital.hospital_type }}</p>
+                        <p>{{ hospital.area }}</p>
+
+                        <p><strong>General Ward:</strong> <span class="{% if hospital.general_beds > 5 %}green{% else %}red{% endif %}">{{ hospital.general_beds }} available</span></p>
+                        <p><strong>Cabin:</strong> <span class="{% if hospital.cabin_beds > 5 %}green{% else %}red{% endif %}">{{ hospital.cabin_beds }} available</span></p>
+                        <p><strong>ICU:</strong> <span class="{% if hospital.icu_beds > 5 %}green{% else %}red{% endif %}">{{ hospital.icu_beds }} available</span></p>
+                        <p><strong>Ventilator:</strong> <span class="{% if hospital.ventilator_beds > 5 %}green{% else %}red{% endif %}">{{ hospital.ventilator_beds }} available</span></p>
+
+                        <a href="#" class="btn">Book Bed</a>
+                        <a href="#" class="btn">View Details</a>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No hospitals found.</p>
+                <p style="text-align:center;">No hospitals found for "{{ q }}"</p>
             {% endif %}
         </div>
-    </div>
-    
+    </section>
+
+        <footer>
+        <div class="foot">
+            <div class="footer-elements">
+                <h3>About MediCare</h3>
+                <a href="">Our Mission</a>
+                <a href=""> How it works</a>
+                <a href="">For Patients</a>
+                <a href="">For Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Services</h3>
+                <a href="">Bed availability</a>
+                <a href="">OPD appointment</a>
+                <a href="">Blood availability</a>
+                <a href="">Find Hospitals</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Support</h3>
+                <a href="">Help center</a>
+                <a href="">Contact Us</a>
+                <a href="">FAQs</a>
+                <a href="">Feedback</a>
+            </div>
+
+            <div class="footer-elements">
+                <h3>Legal</h3>
+                <a href="">Terms of service</a>
+                <a href="">Privacy Policy</a>
+                <a href="">Data Protection</a>
+                <a href="">Cookies Policy</a>
+            </div>
+            <div class="footer-line"></div>
+        </div>
+        <div class="rights">
+            <p>© 2025 MediCare. All rights reserved.</p>
+        </div>
+
+    </footer>
 
 </body>
+</html>
