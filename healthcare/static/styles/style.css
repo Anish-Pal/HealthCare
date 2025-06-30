@@ -224,6 +224,87 @@ nav ul li a:hover{
 .services p{
     padding: 13px 40px;
 }
+
+.chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color:#007bff;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+
+#chat-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Header */
+#chat-header {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* Messages */
+#chat-messages{
+  padding: 10px;
+  height: 250px;
+  overflow-y: auto;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#chat-messages .user {
+  background-color: #e1f5fe;
+  align-self: flex-end;
+}
+
+#chat-messages .ai {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+}
+
+/* Input and Button */
+#chat-input {
+  width: 75%;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  outline: none;
+}
+#chat-popup button {
+  width: 25%;
+  border: none;
+  background: #26a69a;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
 footer{
     background: #333;
 }

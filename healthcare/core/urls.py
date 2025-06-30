@@ -7,5 +7,6 @@ urlpatterns = [
     path('',views.home , name='home'),
     path('hospitals/', views.hospitals, name='hospitals'),
     path('departments/',views.departments,name='departments'),
-    path('doctors/<int:department_id>/',views.doctors,name='doctors')
+    path('doctors/<int:department_id>/',views.doctors,name='doctors'),
+    path('chatbot/', views.chatbot_response , name='chatbot_response')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

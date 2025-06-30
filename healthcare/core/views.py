@@ -5,6 +5,14 @@ from . models import Hospital
 from . models import Bed
 from . models import Department
 from . models import Doctor , Slot
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+import google.generativeai as genai
+
+
+genai.configure(api_key="AIzaSyANTQJ8Be6mwfhLriwERuxLAOj4TMFnbL4")
+
 
 # Create your views here.
 
@@ -62,3 +70,34 @@ def doctors(request , department_id):
         'select_day':select_day
          }
     return render(request,'core/doctorlist.html',context)
+
+@csrf_exempt
+def chatbot_response(request):
+    if request.method =='POST':
+        data = json.loads(request.body)
+        user_message = data.get("message")
+
+        if not user_message:
+            return JsonResponse({"error": "No message provided"}, status=400)
+
+        try:
+            model = genai.GenerativeModel('gemini-1.5-flash-latest')
+            prompt = (
+                "You are a friendly AI healthcare assistant. "
+                "Always greet the user with 'Hello, I am Healio your personal AI doctor. How can I help you today?'only if user say hello or hi. "
+                "Your job is to suggest likely possible health conditions based on user symptoms, "
+                "Do not recommend seeing a doctor unless the symptoms are very severe. "
+                "Do NOT include any disclaimers. "
+                "Be clear and direct in your suggestions.\n\n"
+                "Just answer the user's question directly.\n\n"
+                f"User: {user_message}\n"
+                "Assistant:"
+            )
+            response = model.generate_content(prompt)
+            ai_reply = response.text.strip()
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+        return JsonResponse({"reply": ai_reply})
+
+    return JsonResponse({"error": "invalid request method."}, status=405)
