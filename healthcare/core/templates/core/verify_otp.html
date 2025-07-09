@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/verify_otp.css' %}">
+</head>
+<body>
+     <div class="otp-container">
+    <h2>Verify OTP</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <input type="text" name="otp" maxlength="6" placeholder="Enter OTP" value="{{ form.otp.value|default_if_none:''}}" required />
+      {{ form.otp.errors }}
+      <button type="submit">Verify</button>
+    </form>
+    <div class="resend">
+      Didn’t receive the code? <a href="{% url 'resend-otp' %}">Resend OTP</a>
+    </div>
+  </div>
+</body>
+</html>

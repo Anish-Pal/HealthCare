@@ -10,11 +10,22 @@ body{
 
 .logoImg{
     width: 20px;
-    height: 20px;
+    height: 25px;
     position: absolute;
     right: 20px;
     top: 10px;
     transition: filter 0.1s ease-in-out;
+}
+.loginPage{
+    width: 65px;
+    height: 25px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    transition: filter 0.1s ease-in-out;
+    border:#f1f1f1;
+    border-radius: 10px;
+    cursor: pointer;
 }
 .logoImg:hover{
    filter: invert(1);

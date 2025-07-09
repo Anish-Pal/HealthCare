@@ -1,8 +1,19 @@
 from django.db import models
+from django.utils import timezone
+import datetime
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 # Create your models here.
 User = get_user_model()
+
+class OTPVerification(models.Model):
+    email_or_phone = models.CharField(max_length=100,unique=True)
+    otp_code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def is_expired(self):
+        return timezone.now() > self.created_at + datetime.timedelta(minutes=5)
 
 
 class Hospital(models.Model):

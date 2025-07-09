@@ -4,6 +4,11 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logoutUser , name='logout'),
+    path('signup/',views.signup_start , name='signup'),
+    path('verify-otp/' , views.verify_otp , name='verify'),
+    path('resened-otp', views.resend_otp , name='resend-otp'),
     path('',views.home , name='home'),
     path('hospitals/', views.hospitals, name='hospitals'),
     path('departments/',views.departments,name='departments'),

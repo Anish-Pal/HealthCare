@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'styles/signup.css' %}">
+</head>
+
+<body>
+  <div class="signup-container">
+    <h2>Create Account</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="full_name" placeholder="Full Name" value="{{ form.full_name.value|default_if_none:'' }}"
+        required />
+      {{ form.full_name.errors }}
+
+      <input type="text" name="email_or_phone" placeholder="Phone Number or Email"
+        value="{{ form.email_or_phone.value|default_if_none:'' }}" required />
+      {{ form.email_or_phone.errors }}
+
+      <input type="password" name="password1" placeholder="Password" required />
+      {{ form.password1.errors }}
+
+      <input type="password" name="password2" placeholder="Confirm Password" required />
+      {{ form.password2.errors }}
+
+      {% if form.non_field_errors %}
+      <div class="errorMsg">
+        {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <a href="{% url 'login' %}">
+      <div class="alrSign">Already signed up? Login here.</div>
+    </a>
+    <div class="or">or</div>
+    <a href="" id="Google">
+      <div class="google-btn"><img src="{% static 'assets/300221.png' %}" alt=""> Continue with Google </div>
+    </a>
+  </div>
+</body>
+
+</html>
